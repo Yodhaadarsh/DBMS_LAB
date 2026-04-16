@@ -1,5 +1,5 @@
 # DBMS_LAB
-Aim: To create a new database named 2CSE5_0755.
+Aim: To create a new database named 2CSE5_0755./n
 Requirement: SQL DBMS with database creation privileges.
 Theory: CREATE DATABASE command creates a new database for storing tables and data.
 Query to Perform: Create database named 2CSE5_719.
