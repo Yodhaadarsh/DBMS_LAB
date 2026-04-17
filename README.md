@@ -152,6 +152,8 @@ Query:
 SELECT ename, empno, deptno
 FROM employee
 WHERE job = 'CLERK';
+<img width="843" height="392" alt="image" src="https://github.com/user-attachments/assets/c5d1416c-3e20-4265-a7e8-f79656c53988" />
+
 
 6) Managers not in dept 30
 
