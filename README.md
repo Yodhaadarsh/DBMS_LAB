@@ -227,6 +227,8 @@ SELECT ename, job
 FROM employee
 WHERE deptno = 30
 ORDER BY sal DESC;
+<img width="1088" height="275" alt="image" src="https://github.com/user-attachments/assets/880cf944-7174-401d-8de3-bc8f77686143" />
+
 2) Name 5 letters (A___N)
 
 Aim: To find employees with 5-letter names starting with A and ending with N.
@@ -237,6 +239,8 @@ Query:
 SELECT job, deptno
 FROM employee
 WHERE ename LIKE 'A___N';
+<img width="1089" height="192" alt="image" src="https://github.com/user-attachments/assets/616dfafc-ee09-4f83-b3d5-49b27523b0c0" />
+
 3) Names starting with S
 
 Aim: To display names starting with S.
@@ -247,6 +251,8 @@ Query:
 SELECT ename
 FROM employee
 WHERE ename LIKE 'S%';
+<img width="1089" height="241" alt="image" src="https://github.com/user-attachments/assets/9c9177be-b75d-490d-a125-d8cdf23c3245" />
+
 4) Names ending with S
 
 Aim: To display names ending with S.
@@ -257,6 +263,8 @@ Query:
 SELECT ename
 FROM employee
 WHERE ename LIKE '%S';
+<img width="1088" height="268" alt="image" src="https://github.com/user-attachments/assets/533e7f53-cecf-4066-be0e-5bca8c71a5a4" />
+
 5) Dept or Job condition
 
 Aim: To display employees in specific departments or job roles.
@@ -268,6 +276,8 @@ SELECT ename
 FROM employee
 WHERE deptno IN (10,20,40)
 OR job IN ('CLERK','SALESMAN','ANALYST');
+<img width="995" height="436" alt="image" src="https://github.com/user-attachments/assets/86a07dd1-80ce-4968-b6a8-45b4d0560d0a" />
+
 6) Employees earning commission
 
 Aim: To display employees receiving commission.
@@ -278,6 +288,8 @@ Query:
 SELECT empno, ename
 FROM employee
 WHERE comm IS NOT NULL;
+<img width="846" height="169" alt="image" src="https://github.com/user-attachments/assets/da4ccca7-739d-4e94-89c6-6b26e6dd1069" />
+
 7) Total salary (salary + commission)
 
 Aim: To calculate total salary.
@@ -287,6 +299,8 @@ Query:
 
 SELECT empno, (sal + IFNULL(comm,0)) AS total_salary
 FROM employee;
+<img width="1505" height="314" alt="image" src="https://github.com/user-attachments/assets/e49dfee2-677e-4a23-8898-d238f3f5c85c" />
+
 8) Annual salary
 
 Aim: To calculate annual salary.
@@ -296,6 +310,8 @@ Query:
 
 SELECT empno, sal * 12 AS annual_salary
 FROM employee;
+<img width="940" height="665" alt="image" src="https://github.com/user-attachments/assets/1e325782-49dc-43d1-a7c1-03a9f013a927" />
+
 9) Clerks with salary > 3000
 
 Aim: To display clerks earning more than 3000.
@@ -307,6 +323,8 @@ SELECT ename
 FROM employee
 WHERE job = 'CLERK'
 AND sal > 3000;
+<img width="719" height="204" alt="image" src="https://github.com/user-attachments/assets/40fdfb3d-30c9-47d5-af27-50f43552338f" />
+
 10) Clerk, salesman, analyst with salary > 3000
 
 Aim: To display employees in specific roles earning high salary.
@@ -318,3 +336,122 @@ SELECT ename
 FROM employee
 WHERE job IN ('CLERK','SALESMAN','ANALYST')
 AND sal > 3000;
+<img width="978" height="212" alt="image" src="https://github.com/user-attachments/assets/3e869426-ee7d-4918-a722-164bdc09e2c8" />
+1) Employees before 30-Jun-80 or after 31-Dec-81
+
+Aim: To display employees based on joining date condition.
+Requirement: Employee table with hiredate.
+Theory: Date comparison filters records.
+Query:
+
+SELECT * FROM employee
+WHERE hiredate < '1980-06-30'
+OR hiredate > '1981-12-31';
+<img width="940" height="316" alt="image" src="https://github.com/user-attachments/assets/0374e0d1-8c5c-4f7c-b05f-8cd666e08297" />
+
+2) Names with second letter A
+
+Aim: To display employees whose second letter is A.
+Requirement: Employee name column.
+Theory: LIKE with '_' matches position.
+Query:
+
+SELECT ename FROM employee
+WHERE ename LIKE '_A%';
+<img width="940" height="554" alt="image" src="https://github.com/user-attachments/assets/9b7e1a79-e9ee-47c5-b312-9e7d64810bca" />
+
+3) Names exactly 5 characters
+
+Aim: To display employees with 5-letter names.
+Requirement: Employee table.
+Theory: LENGTH function counts characters.
+Query:
+
+SELECT ename FROM employee
+WHERE LENGTH(ename) = 5;
+<img width="1021" height="322" alt="image" src="https://github.com/user-attachments/assets/c457fa59-58cd-4bbb-b4a5-f2d36c81e0c4" />
+
+4) Names with second letter A (repeat)
+
+Aim: To identify employees with second letter A.
+Requirement: Employee name column.
+Theory: Pattern matching.
+Query:
+
+SELECT ename FROM employee
+WHERE ename LIKE '_A%';
+<img width="1025" height="121" alt="image" src="https://github.com/user-attachments/assets/b634acba-653c-4a96-b330-1c05807de722" />
+
+5) Not salesman, clerk or analyst
+
+Aim: To display employees excluding specific roles.
+Requirement: Employee job column.
+Theory: NOT IN excludes multiple values.
+Query:
+
+SELECT ename FROM employee
+WHERE job NOT IN ('SALESMAN','CLERK','ANALYST');
+<img width="940" height="409" alt="image" src="https://github.com/user-attachments/assets/77b16327-6b94-4fd7-8483-c0d87d840ea4" />
+
+6) Annual salary sorted highest first
+
+Aim: To display annual salary in descending order.
+Requirement: Salary column.
+Theory: ORDER BY sorts results.
+Query:
+
+SELECT ename, sal*12 AS annual_salary
+FROM employee
+ORDER BY annual_salary DESC;
+<img width="940" height="665" alt="image" src="https://github.com/user-attachments/assets/13abdda6-a62e-4cb9-969a-db4a8006f9ee" />
+
+7) Salary components (HRA, DA, PF, Total)
+
+Aim: To calculate salary components.
+Requirement: Salary column.
+Theory: Arithmetic expressions compute derived values.
+Query:
+
+SELECT ename, sal,
+sal*0.15 AS hra,
+sal*0.10 AS da,
+sal*0.05 AS pf,
+(sal + sal*0.15 + sal*0.10 - sal*0.05) AS totalsal
+FROM employee
+ORDER BY totalsal;
+<img width="940" height="750" alt="image" src="https://github.com/user-attachments/assets/cd693a62-01cb-4acb-a778-cda784065445" />
+
+8) Increase salary by 10% (no commission)
+
+Aim: To update salary for employees without commission.
+Requirement: Salary and commission column.
+Theory: UPDATE modifies data conditionally.
+Query:
+
+UPDATE employee
+SET sal = sal * 1.10
+WHERE comm IS NULL;
+<img width="940" height="252" alt="image" src="https://github.com/user-attachments/assets/85a2a271-6132-4bf1-9e45-f45c048d258c" />
+
+9) Salary > 3000 after 20% increment
+
+Aim: To find employees with increased salary above 3000.
+Requirement: Salary column.
+Theory: Arithmetic condition filtering.
+Query:
+
+SELECT * FROM employee
+WHERE sal * 1.20 > 3000;
+<img width="940" height="633" alt="image" src="https://github.com/user-attachments/assets/7b599ef2-4f0d-4f51-a2d5-0cd7bf6ce024" />
+
+10) Salary having at least 3 digits
+
+Aim: To display employees with salary having 3 or more digits.
+Requirement: Salary column.
+Theory: Numeric comparison checks digit count.
+Query:
+
+SELECT * FROM employee
+WHERE sal >= 100;
+<img width="940" height="971" alt="image" src="https://github.com/user-attachments/assets/31d7dacd-4ec8-49b2-9f83-9596560b008f" />
+
