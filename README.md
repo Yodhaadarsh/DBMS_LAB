@@ -454,4 +454,154 @@ Query:
 SELECT * FROM employee
 WHERE sal >= 100;
 <img width="940" height="971" alt="image" src="https://github.com/user-attachments/assets/31d7dacd-4ec8-49b2-9f83-9596560b008f" />
+1) Total number of employees
 
+Aim: To count total employees.
+Requirement: Employee table.
+Theory: COUNT counts rows.
+Query:
+
+SELECT COUNT(*) AS total_employees FROM employee;
+<img width="940" height="273" alt="image" src="https://github.com/user-attachments/assets/21308066-b16d-4a29-b22a-82fd6d84e3e7" />
+
+2) Total salary of all employees
+
+Aim: To calculate total salary.
+Requirement: Salary column.
+Theory: SUM adds values.
+Query:
+
+SELECT SUM(sal) AS total_salary FROM employee;
+<img width="940" height="281" alt="image" src="https://github.com/user-attachments/assets/46f40816-212e-4133-b9f8-8e4eadc9bf02" />
+
+3) Maximum salary
+
+Aim: To find highest salary.
+Requirement: Salary column.
+Theory: MAX returns highest value.
+Query:
+
+SELECT MAX(sal) AS max_salary FROM employee;
+<img width="940" height="279" alt="image" src="https://github.com/user-attachments/assets/24bca161-a507-412c-9017-52bd7048cbe4" />
+
+4) Minimum salary
+
+Aim: To find lowest salary.
+Requirement: Salary column.
+Theory: MIN returns lowest value.
+Query:
+
+SELECT MIN(sal) AS min_salary FROM employee;
+<img width="940" height="297" alt="image" src="https://github.com/user-attachments/assets/ec580d83-a66c-4464-bc3e-d16fae08adb0" />
+
+5) Average salary
+
+Aim: To calculate average salary.
+Requirement: Salary column.
+Theory: AVG computes mean.
+Query:
+
+SELECT AVG(sal) AS avg_salary FROM employee;
+<img width="940" height="295" alt="image" src="https://github.com/user-attachments/assets/33a3e4bf-5998-4ed7-9ebf-981de320d6d8" />
+
+6) Max salary of clerk
+
+Aim: To find highest salary among clerks.
+Requirement: Job and salary columns.
+Theory: Condition + MAX.
+Query:
+
+SELECT MAX(sal) FROM employee
+WHERE job = 'CLERK';
+<img width="940" height="450" alt="image" src="https://github.com/user-attachments/assets/c4a1cb57-1e8d-4525-a331-1770fc2b7044" />
+
+7) Max salary in dept 20
+
+Aim: To find highest salary in department 20.
+Requirement: Deptno column.
+Query:
+
+SELECT MAX(sal) FROM employee
+WHERE deptno = 20;
+<img width="940" height="448" alt="image" src="https://github.com/user-attachments/assets/d5e93d7b-d0f7-4bdc-94f6-05cf648a1b0a" />
+
+8) Min salary of salesman
+
+Aim: To find lowest salary of salesmen.
+Requirement: Job column.
+Query:
+
+SELECT MIN(sal) FROM employee
+WHERE job = 'SALESMAN';
+<img width="940" height="437" alt="image" src="https://github.com/user-attachments/assets/37479924-3863-4f87-ae33-d3bbfe1823f8" />
+
+9) Avg salary of managers
+
+Aim: To calculate average salary of managers.
+Requirement: Job column.
+Query:
+
+SELECT AVG(sal) FROM employee
+WHERE job = 'MANAGER';
+<img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/5af19be9-bc58-4a2a-829d-88b93b7824ce" />
+
+10) Total salary of analyst in dept 40
+
+Aim: To calculate total salary for analysts in dept 40.
+Requirement: Job + deptno columns.
+Query:
+
+SELECT SUM(sal) FROM employee
+WHERE job = 'ANALYST' AND deptno = 40;
+<img width="940" height="482" alt="image" src="https://github.com/user-attachments/assets/fc40ad5c-ed8b-48ef-854a-6f6c4beff136" />
+
+11) Names in uppercase
+
+Aim: To display names in uppercase.
+Requirement: Name column.
+Theory: UPPER converts text.
+Query:
+
+SELECT UPPER(ename) FROM employee;
+<img width="940" height="887" alt="image" src="https://github.com/user-attachments/assets/3bd4bbe8-8646-496a-81f2-908075988838" />
+
+12) Names in lowercase
+
+Aim: To display names in lowercase.
+Requirement: Name column.
+Theory: LOWER converts text.
+Query:
+
+SELECT LOWER(ename) FROM employee;
+<img width="940" height="888" alt="image" src="https://github.com/user-attachments/assets/2aceff32-3ead-4552-ba90-f5d811a85e2d" />
+
+13) Names in proper case
+
+Aim: To display names in proper case.
+Requirement: Name column.
+Theory: CONCAT + functions simulate proper case in MySQL.
+Query:
+
+SELECT CONCAT(UPPER(LEFT(ename,1)), LOWER(SUBSTRING(ename,2)))
+FROM employee;
+<img width="940" height="683" alt="image" src="https://github.com/user-attachments/assets/36c50791-b40f-4b11-ad6b-41453dc4aee1" />
+
+14) Length of your name
+
+Aim: To find length of a given name.
+Requirement: String input.
+Theory: LENGTH counts characters.
+Query:
+
+SELECT LENGTH('RAHUL');
+<img width="940" height="294" alt="image" src="https://github.com/user-attachments/assets/5a590ecc-11a4-49f6-91a9-ec0e944f8d8b" />
+
+
+15) Length of all employee names
+
+Aim: To find length of each employee name.
+Requirement: Employee table.
+Query:
+
+SELECT ename, LENGTH(ename) FROM employee;
+<img width="940" height="748" alt="image" src="https://github.com/user-attachments/assets/c5e04723-0aa6-4fe1-a806-3efaf6855cb7" />
