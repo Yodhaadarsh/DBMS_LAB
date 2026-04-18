@@ -1,7 +1,7 @@
 Aim: To create a new database.
 Requirement: MySQL/MariaDB environment.
 Theory: Database stores tables and related data.
-Query:
+\Query:
 
 CREATE DATABASE 2cse17g1_719;
 <img width="909" height="108" alt="image" src="https://github.com/user-attachments/assets/9de80e6e-972d-4d33-8bfc-4a945266818c" />
@@ -11,7 +11,7 @@ CREATE DATABASE 2cse17g1_719;
 Aim: To select database for operations.
 Requirement: Created database.
 Theory: USE command activates a database.
-Query:
+\Query:
 
 USE 2cse17g1_719;
 
@@ -20,7 +20,7 @@ USE 2cse17g1_719;
 Aim: To create department table.
 Requirement: Database selected.
 Theory: Table stores structured records.
-Query:
+\Query:
 
 CREATE TABLE department (
   deptno INT PRIMARY KEY,
@@ -34,7 +34,7 @@ CREATE TABLE department (
 Aim: To create employee table with constraints.
 Requirement: Department table exists.
 Theory: Tables define schema using columns and constraints.
-Query:
+\Query:
 
 CREATE TABLE employee (
   empno INT PRIMARY KEY,
@@ -55,7 +55,7 @@ CREATE TABLE employee (
 Aim: To insert department records.
 Requirement: Department table.
 Theory: INSERT adds rows.
-Query:
+\Query:
 
 INSERT INTO department VALUES (10,'RESEARCH');
 INSERT INTO department VALUES (20,'ACCOUNTING');
@@ -68,7 +68,7 @@ INSERT INTO department VALUES (40,'OPERATIONS');
 Aim: To insert employee records.
 Requirement: Employee table.
 Theory: Data is inserted row-wise.
-Query:
+\Query:
 
 INSERT INTO employee VALUES (7369,'SMITH','CLERK',7902,'1980-12-17',800,NULL,20);
 INSERT INTO employee VALUES (7499,'ALLEN','SALESMAN',7698,'1981-02-20',1600,300,30);
@@ -91,7 +91,7 @@ INSERT INTO employee VALUES (7934,'MILLER','CLERK',7782,'1982-01-23',1300,NULL,1
 Aim: To view inserted records.
 Requirement: Tables populated.
 Theory: SELECT retrieves data.
-Query:
+\Query:
 
 SELECT * FROM employee;
 SELECT * FROM department;
@@ -101,7 +101,7 @@ SELECT * FROM department;
 Aim: To display unique job roles.
 Requirement: Employee table with job column.
 Theory: DISTINCT removes duplicate values.
-Query:
+\Query:
 
 SELECT DISTINCT job FROM employee;
 <img width="628" height="355" alt="image" src="https://github.com/user-attachments/assets/7ff5ef30-0eb2-4988-8380-8a2d05359e84" />
@@ -111,7 +111,7 @@ SELECT DISTINCT job FROM employee;
 Aim: To display employees working in department 30.
 Requirement: Employee table with deptno.
 Theory: WHERE filters records.
-Query:
+\Query:
 
 SELECT * FROM employee
 WHERE deptno = 30;
@@ -122,7 +122,7 @@ WHERE deptno = 30;
 Aim: To display department numbers and names greater than 20.
 Requirement: Department table.
 Theory: Comparison operators filter numeric values.
-Query:
+\Query:
 
 SELECT deptno, dname
 FROM department
@@ -134,7 +134,7 @@ WHERE deptno > 20;
 Aim: To display managers and clerks in department 30.
 Requirement: Employee table.
 Theory: IN operator checks multiple values.
-Query:
+\Query:
 
 SELECT *
 FROM employee
@@ -147,7 +147,7 @@ AND job IN ('MANAGER','CLERK');
 Aim: To display name, number and department of clerks.
 Requirement: Employee table.
 Theory: SELECT specific columns.
-Query:
+\Query:
 
 SELECT ename, empno, deptno
 FROM employee
@@ -160,7 +160,7 @@ WHERE job = 'CLERK';
 Aim: To display managers excluding department 30.
 Requirement: Employee table.
 Theory: <> means NOT EQUAL.
-Query:
+\Query:
 
 SELECT *
 FROM employee
@@ -173,7 +173,7 @@ AND deptno <> 30;
 Aim: To display employees of dept 10 excluding managers and clerks.
 Requirement: Employee table.
 Theory: NOT IN excludes values.
-Query:
+\Query:
 
 SELECT *
 FROM employee
@@ -186,7 +186,7 @@ AND job NOT IN ('MANAGER','CLERK');
 Aim: To find employees earning in given range.
 Requirement: Salary column.
 Theory: BETWEEN filters range values.
-Query:
+\Query:
 
 SELECT ename, job
 FROM employee
@@ -198,7 +198,7 @@ WHERE sal BETWEEN 1200 AND 1400;
 Aim: To display employees with specific job roles.
 Requirement: Employee job column.
 Theory: IN operator matches multiple values.
-Query:
+\Query:
 
 SELECT ename, deptno
 FROM employee
@@ -210,7 +210,7 @@ WHERE job IN ('CLERK','ANALYST','SALESMAN');
 Aim: To display employees whose names start with M.
 Requirement: Employee name column.
 Theory: LIKE performs pattern matching.
-Query:
+\Query:
 
 SELECT ename, deptno
 FROM employee
@@ -221,7 +221,7 @@ WHERE ename LIKE 'M%';
 Aim: To display employees in dept 30 sorted by salary descending.
 Requirement: Employee table with deptno and salary.
 Theory: ORDER BY sorts records.
-Query:
+\Query:
 
 SELECT ename, job
 FROM employee
@@ -234,7 +234,7 @@ ORDER BY sal DESC;
 Aim: To find employees with 5-letter names starting with A and ending with N.
 Requirement: Employee name column.
 Theory: LIKE with underscore (_) matches fixed length.
-Query:
+\Query:
 
 SELECT job, deptno
 FROM employee
@@ -246,7 +246,7 @@ WHERE ename LIKE 'A___N';
 Aim: To display names starting with S.
 Requirement: Employee name field.
 Theory: LIKE 'S%' matches starting pattern.
-Query:
+\Query:
 
 SELECT ename
 FROM employee
@@ -258,7 +258,7 @@ WHERE ename LIKE 'S%';
 Aim: To display names ending with S.
 Requirement: Employee name field.
 Theory: LIKE '%S' matches ending pattern.
-Query:
+\Query:
 
 SELECT ename
 FROM employee
@@ -270,7 +270,7 @@ WHERE ename LIKE '%S';
 Aim: To display employees in specific departments or job roles.
 Requirement: Employee table.
 Theory: OR combines multiple conditions.
-Query:
+\Query:
 
 SELECT ename
 FROM employee
@@ -283,7 +283,7 @@ OR job IN ('CLERK','SALESMAN','ANALYST');
 Aim: To display employees receiving commission.
 Requirement: Commission column.
 Theory: IS NOT NULL checks values.
-Query:
+\Query:
 
 SELECT empno, ename
 FROM employee
@@ -295,7 +295,7 @@ WHERE comm IS NOT NULL;
 Aim: To calculate total salary.
 Requirement: Salary and commission columns.
 Theory: Arithmetic operations compute values.
-Query:
+\Query:
 
 SELECT empno, (sal + IFNULL(comm,0)) AS total_salary
 FROM employee;
@@ -306,7 +306,7 @@ FROM employee;
 Aim: To calculate annual salary.
 Requirement: Salary column.
 Theory: Multiplication derives yearly salary.
-Query:
+\Query:
 
 SELECT empno, sal * 12 AS annual_salary
 FROM employee;
@@ -317,7 +317,7 @@ FROM employee;
 Aim: To display clerks earning more than 3000.
 Requirement: Employee table.
 Theory: WHERE filters multiple conditions.
-Query:
+\Query:
 
 SELECT ename
 FROM employee
@@ -330,7 +330,7 @@ AND sal > 3000;
 Aim: To display employees in specific roles earning high salary.
 Requirement: Employee table.
 Theory: IN + AND filters multiple conditions.
-Query:
+\Query:
 
 SELECT ename
 FROM employee
@@ -342,7 +342,7 @@ AND sal > 3000;
 Aim: To display employees based on joining date condition.
 Requirement: Employee table with hiredate.
 Theory: Date comparison filters records.
-Query:
+\Query:
 
 SELECT * FROM employee
 WHERE hiredate < '1980-06-30'
@@ -354,7 +354,7 @@ OR hiredate > '1981-12-31';
 Aim: To display employees whose second letter is A.
 Requirement: Employee name column.
 Theory: LIKE with '_' matches position.
-Query:
+\Query:
 
 SELECT ename FROM employee
 WHERE ename LIKE '_A%';
@@ -365,7 +365,7 @@ WHERE ename LIKE '_A%';
 Aim: To display employees with 5-letter names.
 Requirement: Employee table.
 Theory: LENGTH function counts characters.
-Query:
+\Query:
 
 SELECT ename FROM employee
 WHERE LENGTH(ename) = 5;
@@ -376,7 +376,7 @@ WHERE LENGTH(ename) = 5;
 Aim: To identify employees with second letter A.
 Requirement: Employee name column.
 Theory: Pattern matching.
-Query:
+\Query:
 
 SELECT ename FROM employee
 WHERE ename LIKE '_A%';
@@ -387,7 +387,7 @@ WHERE ename LIKE '_A%';
 Aim: To display employees excluding specific roles.
 Requirement: Employee job column.
 Theory: NOT IN excludes multiple values.
-Query:
+\Query:
 
 SELECT ename FROM employee
 WHERE job NOT IN ('SALESMAN','CLERK','ANALYST');
@@ -398,7 +398,7 @@ WHERE job NOT IN ('SALESMAN','CLERK','ANALYST');
 Aim: To display annual salary in descending order.
 Requirement: Salary column.
 Theory: ORDER BY sorts results.
-Query:
+\Query:
 
 SELECT ename, sal*12 AS annual_salary
 FROM employee
@@ -410,7 +410,7 @@ ORDER BY annual_salary DESC;
 Aim: To calculate salary components.
 Requirement: Salary column.
 Theory: Arithmetic expressions compute derived values.
-Query:
+\Query:
 
 SELECT ename, sal,
 sal*0.15 AS hra,
@@ -426,7 +426,7 @@ ORDER BY totalsal;
 Aim: To update salary for employees without commission.
 Requirement: Salary and commission column.
 Theory: UPDATE modifies data conditionally.
-Query:
+\Query:
 
 UPDATE employee
 SET sal = sal * 1.10
@@ -438,7 +438,7 @@ WHERE comm IS NULL;
 Aim: To find employees with increased salary above 3000.
 Requirement: Salary column.
 Theory: Arithmetic condition filtering.
-Query:SELECT * FROM employee
+\Query:SELECT * FROM employee
 WHERE sal * 1.20 > 3000;
 <img width="940" height="633" alt="image" src="https://github.com/user-attachments/assets/7b599ef2-4f0d-4f51-a2d5-0cd7bf6ce024" />
 
@@ -447,7 +447,7 @@ WHERE sal * 1.20 > 3000;
 Aim: To display employees with salary having 3 or more digits.
 Requirement: Salary column.
 Theory: Numeric comparison checks digit count.
-Query:SELECT * FROM employee
+\Query:SELECT * FROM employee
 WHERE sal >= 100;
 <img width="940" height="971" alt="image" src="https://github.com/user-attachments/assets/31d7dacd-4ec8-49b2-9f83-9596560b008f" />
 1) Total number of employees
@@ -463,7 +463,7 @@ Query:SELECT COUNT(*) AS total_employees FROM employee;
 Aim: To calculate total salary.
 Requirement: Salary column.
 Theory: SUM adds values.
-Query:SELECT SUM(sal) AS total_salary FROM employee;
+\Query:SELECT SUM(sal) AS total_salary FROM employee;
 <img width="940" height="281" alt="image" src="https://github.com/user-attachments/assets/46f40816-212e-4133-b9f8-8e4eadc9bf02" />
 
 3) Maximum salary
@@ -471,7 +471,7 @@ Query:SELECT SUM(sal) AS total_salary FROM employee;
 Aim: To find highest salary.
 Requirement: Salary column.
 Theory: MAX returns highest value.
-Query:SELECT MAX(sal) AS max_salary FROM employee;
+\Query:SELECT MAX(sal) AS max_salary FROM employee;
 <img width="940" height="279" alt="image" src="https://github.com/user-attachments/assets/24bca161-a507-412c-9017-52bd7048cbe4" />
 
 4) Minimum salary
@@ -479,7 +479,7 @@ Query:SELECT MAX(sal) AS max_salary FROM employee;
 Aim: To find lowest salary.
 Requirement: Salary column.
 Theory: MIN returns lowest value.
-Query:SELECT MIN(sal) AS min_salary FROM employee;
+\Query:SELECT MIN(sal) AS min_salary FROM employee;
 <img width="940" height="297" alt="image" src="https://github.com/user-attachments/assets/ec580d83-a66c-4464-bc3e-d16fae08adb0" />
 
 5) Average salary
@@ -487,7 +487,7 @@ Query:SELECT MIN(sal) AS min_salary FROM employee;
 Aim: To calculate average salary.
 Requirement: Salary column.
 Theory: AVG computes mean.
-Query:SELECT AVG(sal) AS avg_salary FROM employee;
+\Query:SELECT AVG(sal) AS avg_salary FROM employee;
 <img width="940" height="295" alt="image" src="https://github.com/user-attachments/assets/33a3e4bf-5998-4ed7-9ebf-981de320d6d8" />
 
 6) Max salary of clerk
@@ -495,7 +495,7 @@ Query:SELECT AVG(sal) AS avg_salary FROM employee;
 Aim: To find highest salary among clerks.
 Requirement: Job and salary columns.
 Theory: Condition + MAX.
-Query:SELECT MAX(sal) FROM employee
+\Query:SELECT MAX(sal) FROM employee
 WHERE job = 'CLERK';
 <img width="940" height="450" alt="image" src="https://github.com/user-attachments/assets/c4a1cb57-1e8d-4525-a331-1770fc2b7044" />
 
@@ -503,7 +503,7 @@ WHERE job = 'CLERK';
 
 Aim: To find highest salary in department 20.
 Requirement: Deptno column.
-Query:SELECT MAX(sal) FROM employee
+\Query:SELECT MAX(sal) FROM employee
 WHERE deptno = 20;
 <img width="940" height="448" alt="image" src="https://github.com/user-attachments/assets/d5e93d7b-d0f7-4bdc-94f6-05cf648a1b0a" />
 
@@ -511,7 +511,7 @@ WHERE deptno = 20;
 
 Aim: To find lowest salary of salesmen.
 Requirement: Job column.
-Query:SELECT MIN(sal) FROM employee
+\Query:SELECT MIN(sal) FROM employee
 WHERE job = 'SALESMAN';
 <img width="940" height="437" alt="image" src="https://github.com/user-attachments/assets/37479924-3863-4f87-ae33-d3bbfe1823f8" />
 
@@ -519,7 +519,7 @@ WHERE job = 'SALESMAN';
 
 Aim: To calculate average salary of managers.
 Requirement: Job column.
-Query:SELECT AVG(sal) FROM employee
+\Query:SELECT AVG(sal) FROM employee
 WHERE job = 'MANAGER';
 <img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/5af19be9-bc58-4a2a-829d-88b93b7824ce" />
 
@@ -527,7 +527,7 @@ WHERE job = 'MANAGER';
 
 Aim: To calculate total salary for analysts in dept 40.
 Requirement: Job + deptno columns.
-Query:SELECT SUM(sal) FROM employee
+\Query:SELECT SUM(sal) FROM employee
 WHERE job = 'ANALYST' AND deptno = 40;
 <img width="940" height="482" alt="image" src="https://github.com/user-attachments/assets/fc40ad5c-ed8b-48ef-854a-6f6c4beff136" />
 
@@ -536,7 +536,7 @@ WHERE job = 'ANALYST' AND deptno = 40;
 Aim: To display names in uppercase.
 Requirement: Name column.
 Theory: UPPER converts text.
-Query:SELECT UPPER(ename) FROM employee;
+\Query:SELECT UPPER(ename) FROM employee;
 <img width="940" height="887" alt="image" src="https://github.com/user-attachments/assets/3bd4bbe8-8646-496a-81f2-908075988838" />
 
 12) Names in lowercase
@@ -544,7 +544,7 @@ Query:SELECT UPPER(ename) FROM employee;
 Aim: To display names in lowercase.
 Requirement: Name column.
 Theory: LOWER converts text.
-Query:SELECT LOWER(ename) FROM employee;
+\Query:SELECT LOWER(ename) FROM employee;
 <img width="940" height="888" alt="image" src="https://github.com/user-attachments/assets/2aceff32-3ead-4552-ba90-f5d811a85e2d" />
 
 13) Names in proper case
@@ -552,7 +552,7 @@ Query:SELECT LOWER(ename) FROM employee;
 Aim: To display names in proper case.
 Requirement: Name column.
 Theory: CONCAT + functions simulate proper case in MySQL.
-Query:SELECT CONCAT(UPPER(LEFT(ename,1)), LOWER(SUBSTRING(ename,2)))
+\Query:SELECT CONCAT(UPPER(LEFT(ename,1)), LOWER(SUBSTRING(ename,2)))
 FROM employee;
 <img width="940" height="683" alt="image" src="https://github.com/user-attachments/assets/36c50791-b40f-4b11-ad6b-41453dc4aee1" />
 
@@ -561,7 +561,7 @@ FROM employee;
 Aim: To find length of a given name.
 Requirement: String input.
 Theory: LENGTH counts characters.
-Query:SELECT LENGTH('RAHUL');
+\Query:SELECT LENGTH('RAHUL');
 <img width="940" height="294" alt="image" src="https://github.com/user-attachments/assets/5a590ecc-11a4-49f6-91a9-ec0e944f8d8b" />
 
 
@@ -569,5 +569,5 @@ Query:SELECT LENGTH('RAHUL');
 
 Aim: To find length of each employee name.
 Requirement: Employee table.
-Query:SELECT ename, LENGTH(ename) FROM employee;
+\Query:SELECT ename, LENGTH(ename) FROM employee;
 <img width="940" height="748" alt="image" src="https://github.com/user-attachments/assets/c5e04723-0aa6-4fe1-a806-3efaf6855cb7" />
