@@ -1,7 +1,7 @@
 Aim: To create a new database.
 Requirement: MySQL/MariaDB environment.
-Theory: Database stores tables and related data.
-\Query:
+Theory: Database stores tables and related data.\
+Query:
 
 CREATE DATABASE 2cse17g1_719;
 <img width="909" height="108" alt="image" src="https://github.com/user-attachments/assets/9de80e6e-972d-4d33-8bfc-4a945266818c" />
@@ -10,8 +10,8 @@ CREATE DATABASE 2cse17g1_719;
 
 Aim: To select database for operations.
 Requirement: Created database.
-Theory: USE command activates a database.
-\Query:
+Theory: USE command activates a database.\
+Query:
 
 USE 2cse17g1_719;
 
@@ -19,8 +19,8 @@ USE 2cse17g1_719;
 
 Aim: To create department table.
 Requirement: Database selected.
-Theory: Table stores structured records.
-\Query:
+Theory: Table stores structured records.\
+Query:
 
 CREATE TABLE department (
   deptno INT PRIMARY KEY,
