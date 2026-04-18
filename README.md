@@ -1,28 +1,22 @@
-Aim: To create a new database.
+**Aim: To create a new database.**
 Requirement: MySQL/MariaDB environment.
 Theory: Database stores tables and related data.\
-Query:
-
-CREATE DATABASE 2cse17g1_719;
+Query: CREATE DATABASE 2cse17g1_719;
 <img width="909" height="108" alt="image" src="https://github.com/user-attachments/assets/9de80e6e-972d-4d33-8bfc-4a945266818c" />
 
 ✅ STEP 2 – Use Database
 
-Aim: To select database for operations.
+**Aim: To select database for operations.**
 Requirement: Created database.
 Theory: USE command activates a database.\
-Query:
-
-USE 2cse17g1_719;
+Query:USE 2cse17g1_719;
 
 ✅ STEP 3 – Create DEPARTMENT Table
 
-Aim: To create department table.
+**Aim: To create department table.**
 Requirement: Database selected.
 Theory: Table stores structured records.\
-Query:
-
-CREATE TABLE department (
+Query:CREATE TABLE department (
   deptno INT PRIMARY KEY,
   dname VARCHAR(15) NOT NULL
 );
@@ -31,12 +25,10 @@ CREATE TABLE department (
 
 ✅ STEP 4 – Create EMPLOYEE Table
 
-Aim: To create employee table with constraints.
+**Aim: To create employee table with constraints.**
 Requirement: Department table exists.
-Theory: Tables define schema using columns and constraints.
-\Query:
-
-CREATE TABLE employee (
+Theory: Tables define schema using columns and constraints.\
+Query:CREATE TABLE employee (
   empno INT PRIMARY KEY,
   ename VARCHAR(20) NOT NULL,
   job VARCHAR(20),
@@ -52,12 +44,10 @@ CREATE TABLE employee (
 
 ✅ STEP 5 – Insert into DEPARTMENT
 
-Aim: To insert department records.
+**Aim: To insert department records.**
 Requirement: Department table.
 Theory: INSERT adds rows.
-\Query:
-
-INSERT INTO department VALUES (10,'RESEARCH');
+Query: INSERT INTO department VALUES (10,'RESEARCH');
 INSERT INTO department VALUES (20,'ACCOUNTING');
 INSERT INTO department VALUES (30,'SALES');
 INSERT INTO department VALUES (40,'OPERATIONS');
