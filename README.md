@@ -1181,3 +1181,107 @@ WHERE (sal + IFNULL(comm,0)) >= (
   SELECT MAX(sal) FROM employee
 );
 <img width="753" height="384" alt="image" src="https://github.com/user-attachments/assets/1ee000f5-9ad6-4282-8471-7a8f712b83e1" />
+1) Days remaining in current year
+
+**Aim: To calculate remaining days in current year.** \
+Requirement: System date.\
+Theory: Date functions calculate difference between dates.\
+Query: SELECT DATEDIFF(
+  STR_TO_DATE(CONCAT(YEAR(CURDATE()),'-12-31'),'%Y-%m-%d'),
+  CURDATE()
+) AS remaining_days;
+<img width="940" height="140" alt="image" src="https://github.com/user-attachments/assets/8d9d18d5-77cc-499d-9aed-ca64e425209c" />
+
+2) Highest, lowest salary and difference
+
+**Aim: To find maximum, minimum salary and their difference.** \
+Requirement: Employee table.\
+Theory: Aggregate functions summarize data.\
+Query: SELECT MAX(sal) AS highest,
+       MIN(sal) AS lowest,
+       MAX(sal) - MIN(sal) AS difference
+FROM employee;
+<img width="940" height="179" alt="image" src="https://github.com/user-attachments/assets/cb1f2f63-49eb-41ad-b8d8-a85edde8ea55" />
+
+3) Commission more than 25% of salary
+
+**Aim: To display employees whose commission exceeds 25% of salary.** \
+Requirement: Salary and commission columns.\
+Theory: Arithmetic conditions filter data.\
+Query: SELECT ename, sal, comm
+FROM employee
+WHERE comm > 0.25 * sal;
+
+4) Salary in dollar format
+
+Aim: To display salary in formatted currency.
+Requirement: Salary column.
+Theory: CONCAT and FORMAT display formatted values.
+Query:
+
+SELECT ename, CONCAT('$', FORMAT(sal,2)) AS salary
+FROM employee;
+5) Matrix query (Job vs Department salary)
+
+Aim: To display salary distribution across departments.
+Requirement: Employee table.
+Theory: Conditional aggregation using CASE.
+Query:
+
+SELECT job,
+SUM(CASE WHEN deptno=10 THEN sal ELSE 0 END) AS dept10,
+SUM(CASE WHEN deptno=20 THEN sal ELSE 0 END) AS dept20,
+SUM(CASE WHEN deptno=30 THEN sal ELSE 0 END) AS dept30,
+SUM(sal) AS total
+FROM employee
+GROUP BY job;
+6) Total employees and year-wise count
+
+Aim: To count employees based on joining year.
+Requirement: Hiredate column.
+Theory: CASE with aggregate functions.
+Query:
+
+SELECT COUNT(*) AS total,
+SUM(CASE WHEN YEAR(hiredate)=1980 THEN 1 ELSE 0 END) AS y1980,
+SUM(CASE WHEN YEAR(hiredate)=1981 THEN 1 ELSE 0 END) AS y1981,
+SUM(CASE WHEN YEAR(hiredate)=1982 THEN 1 ELSE 0 END) AS y1982,
+SUM(CASE WHEN YEAR(hiredate)=1983 THEN 1 ELSE 0 END) AS y1983
+FROM employee;
+7) Last Sunday of current month
+
+Aim: To find last Sunday of the current month.
+Requirement: Date functions.
+Theory: LAST_DAY and DAYOFWEEK functions.
+Query:
+
+SELECT DATE_SUB(LAST_DAY(CURDATE()),
+INTERVAL (DAYOFWEEK(LAST_DAY(CURDATE()))-1) DAY);
+8) Department-wise employee count
+
+Aim: To count employees in each department.
+Requirement: Employee table.
+Theory: GROUP BY groups data.
+Query:
+
+SELECT deptno, COUNT(*) AS total_employees
+FROM employee
+GROUP BY deptno;
+9) Job-wise employee count
+
+Aim: To count employees based on job roles.
+Requirement: Employee table.
+Query:
+
+SELECT job, COUNT(*) AS total_employees
+FROM employee
+GROUP BY job;
+10) Department-wise total salary
+
+Aim: To calculate total salary per department.
+Requirement: Employee table.
+Query:
+
+SELECT deptno, SUM(sal) AS total_salary
+FROM employee
+GROUP BY deptno;
