@@ -1,0 +1,84 @@
+**Aim: To create a new database.**
+Requirement: MySQL/MariaDB environment.\
+Theory: Database stores tables and related data.\
+Query: CREATE DATABASE 2cse17g1_719;
+<img width="909" height="108" alt="image" src="https://github.com/user-attachments/assets/9de80e6e-972d-4d33-8bfc-4a945266818c" />
+
+✅ STEP 2 – Use Database
+
+**Aim: To select database for operations.**
+Requirement: Created database.\
+Theory: USE command activates a database.\
+Query:USE 2cse17g1_719;
+
+✅ STEP 3 – Create DEPARTMENT Table
+
+**Aim: To create department table.**
+Requirement: Database selected.\
+Theory: Table stores structured records.\
+Query:CREATE TABLE department (
+  deptno INT PRIMARY KEY,
+  dname VARCHAR(15) NOT NULL
+);
+<img width="1008" height="502" alt="image" src="https://github.com/user-attachments/assets/9bd152eb-4c1d-4c07-9a47-ef96b1266911" />
+
+
+✅ STEP 4 – Create EMPLOYEE Table
+
+**Aim: To create employee table with constraints.**
+Requirement: Department table exists.\
+Theory: Tables define schema using columns and constraints.\
+Query:CREATE TABLE employee (
+  empno INT PRIMARY KEY,
+  ename VARCHAR(20) NOT NULL,
+  job VARCHAR(20),
+  mgr INT,
+  hiredate DATE,
+  sal DECIMAL(10,2),
+  comm DECIMAL(7,2),
+  deptno INT,
+  FOREIGN KEY (deptno) REFERENCES department(deptno)
+);
+<img width="659" height="358" alt="image" src="https://github.com/user-attachments/assets/a2cdc662-a051-42a3-aa75-e6e1967bd9b6" />
+
+
+✅ STEP 5 – Insert into DEPARTMENT
+
+**Aim: To insert department records.**
+Requirement: Department table.\
+Theory: INSERT adds rows.\
+Query: INSERT INTO department VALUES (10,'RESEARCH');
+INSERT INTO department VALUES (20,'ACCOUNTING');
+INSERT INTO department VALUES (30,'SALES');
+INSERT INTO department VALUES (40,'OPERATIONS');
+<img width="810" height="263" alt="image" src="https://github.com/user-attachments/assets/e6f46a60-a5c4-4867-b216-2739d1dda784" />
+
+✅ STEP 6 – Insert into EMPLOYEE
+
+**Aim: To insert employee records.**\
+Requirement: Employee table.\
+Theory: Data is inserted row-wise.
+Query: INSERT INTO employee VALUES (7369,'SMITH','CLERK',7902,'1980-12-17',800,NULL,20);
+INSERT INTO employee VALUES (7499,'ALLEN','SALESMAN',7698,'1981-02-20',1600,300,30);
+INSERT INTO employee VALUES (7521,'WARD','SALESMAN',7698,'1981-02-22',1250,300,30);
+INSERT INTO employee VALUES (7566,'JONES','MANAGER',7839,'1981-04-02',2975,NULL,20);
+INSERT INTO employee VALUES (7654,'MARTIN','SALESMAN',7698,'1981-09-28',1250,1400,30);
+INSERT INTO employee VALUES (7698,'BLAKE','MANAGER',7839,'1981-05-01',2850,NULL,30);
+INSERT INTO employee VALUES (7782,'CLARK','MANAGER',7839,'1981-06-09',2450,NULL,20);
+INSERT INTO employee VALUES (7788,'SCOTT','ANALYST',7566,'1982-12-09',3000,NULL,40);
+INSERT INTO employee VALUES (7839,'KING','PRESIDENT',NULL,'1981-11-17',5000,NULL,20);
+INSERT INTO employee VALUES (7844,'TURNER','SALESMAN',7698,'1981-09-08',1500,0,30);
+INSERT INTO employee VALUES (7876,'ADAMS','CLERK',7788,'1983-01-12',1100,NULL,20);
+INSERT INTO employee VALUES (7900,'JAMES','CLERK',7698,'1981-12-03',950,NULL,30);
+INSERT INTO employee VALUES (7902,'FORD','ANALYST',7566,'1981-12-03',3000,NULL,20);
+INSERT INTO employee VALUES (7934,'MILLER','CLERK',7782,'1982-01-23',1300,NULL,10);
+<img width="1008" height="502" alt="image" src="https://github.com/user-attachments/assets/1172838d-5d4f-4403-b748-de3224058ee0" />
+
+✅ STEP 7 – Display Data
+
+**Aim: To view inserted records.**\
+Requirement: Tables populated.\
+Theory: SELECT retrieves data.\
+Query: SELECT * FROM employee;
+SELECT * FROM department;
+<img width="865" height="454" alt="image" src="https://github.com/user-attachments/assets/1ae76529-b95e-47ec-b8e7-f0bb671a9dd9" />
