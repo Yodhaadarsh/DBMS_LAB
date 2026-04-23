@@ -1,0 +1,111 @@
+1) Employee with highest salary
+
+**Aim: To find employee(s) earning highest salary.** \
+Requirement: Employee table.\
+Theory: Subquery returns max value.\
+Query: SELECT ename
+FROM employee
+WHERE sal = (SELECT MAX(sal) FROM employee);
+<img width="940" height="292" alt="image" src="https://github.com/user-attachments/assets/de6a3613-5e1a-4fe6-8a2d-ec133704d6c1" />
+2) Highest paid clerk
+
+**Aim: To find clerk earning highest salary.** \
+Requirement: Job and salary columns.\
+Query: SELECT empno, ename
+FROM employee
+WHERE job='CLERK'
+AND sal = (SELECT MAX(sal) FROM employee WHERE job='CLERK');
+<img width="940" height="268" alt="image" src="https://github.com/user-attachments/assets/af415077-02c7-4a37-b1ba-849f5dd19776" />
+3) Salesman earning more than any clerk
+
+**Aim: To find salesman earning more than highest clerk.** \
+Requirement: Employee table.\
+Query: SELECT ename
+FROM employee
+WHERE job='SALESMAN'
+AND sal > (SELECT MAX(sal) FROM employee WHERE job='CLERK');
+<img width="940" height="268" alt="image" src="https://github.com/user-attachments/assets/bd9bb890-471b-4d80-986a-b73589d542c3" />
+
+4) Clerks salary between JAMES and SCOTT
+
+**Aim: To find clerks earning between JAMES and SCOTT.** \
+Requirement: Employee table.\
+Query: SELECT ename
+FROM employee
+WHERE job='CLERK'
+AND sal > (SELECT sal FROM employee WHERE ename='JAMES')
+AND sal < (SELECT sal FROM employee WHERE ename='SCOTT');
+<img width="940" height="327" alt="image" src="https://github.com/user-attachments/assets/54bd28df-7ad7-43bb-8282-409cc0a2f04f" />
+
+5) Salary > JAMES or SCOTT
+
+**Aim: To find employees earning more than JAMES or SCOTT.** \
+Requirement: Employee table.\
+Query: SELECT ename
+FROM employee
+WHERE sal > (SELECT sal FROM employee WHERE ename='JAMES')
+OR sal > (SELECT sal FROM employee WHERE ename='SCOTT');
+<img width="940" height="569" alt="image" src="https://github.com/user-attachments/assets/c26c8ee5-eb98-4805-849b-5cad95264b46" />
+
+6) Highest salary in each department
+
+**Aim: To find highest paid employee per department.** \
+Requirement: Deptno and salary.\
+Theory: Correlated subquery.\
+Query: SELECT ename, deptno, sal
+FROM employee e
+WHERE sal = (
+  SELECT MAX(sal)
+  FROM employee
+  WHERE deptno = e.deptno
+);
+<img width="1031" height="334" alt="image" src="https://github.com/user-attachments/assets/2531cc33-1601-4505-87c5-b33eaf49ccc1" />
+
+7) Highest salary in each job group
+
+**Aim: To find highest paid employee per job.** \
+Requirement: Job column.\
+Query: SELECT ename, job, sal
+FROM employee e
+WHERE sal = (
+  SELECT MAX(sal)
+  FROM employee
+  WHERE job = e.job
+);
+<img width="940" height="371" alt="image" src="https://github.com/user-attachments/assets/f3657fbf-6ad6-4aba-9619-1862ab8b1550" />
+
+8) Employees working in ACCOUNTING
+
+**Aim: To find employees in ACCOUNTING department.** \
+Requirement: Employee + Department tables.
+Query: SELECT ename
+FROM employee
+WHERE deptno = (
+  SELECT deptno FROM department WHERE dname='ACCOUNTING'
+);
+<img width="940" height="87" alt="image" src="https://github.com/user-attachments/assets/f3d64ad3-6356-4411-95c4-059a9a1bf25a" />
+
+9) Employees working in SALES
+
+**Aim: To find employees working in SALES department.** \
+Requirement: Department table (no LOC used).\
+Query: SELECT ename
+FROM employee
+WHERE deptno = (
+  SELECT deptno FROM department WHERE dname='SALES'
+);
+<img width="1143" height="256" alt="image" src="https://github.com/user-attachments/assets/d2865cb8-64a5-4f9a-83c5-a25ceed20151" />
+10) Job groups with total salary > managers
+
+**Aim: To find jobs whose total salary exceeds manager salary.** \
+Requirement: Employee table.\
+Theory: GROUP BY + HAVING with subquery.\
+Query: SELECT job
+FROM employee
+GROUP BY job
+HAVING SUM(sal) > (
+  SELECT MAX(sal)
+  FROM employee
+  WHERE job='MANAGER'
+);
+<img width="940" height="314" alt="image" src="https://github.com/user-attachments/assets/7a4860a2-d62a-4d48-9dbc-d3cfa89aad39" />
