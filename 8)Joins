@@ -108,3 +108,10 @@ FROM employee e
 JOIN department d ON e.deptno = d.deptno;
 <img width="911" height="695" alt="image" src="https://github.com/user-attachments/assets/16c19c2f-10b6-46fb-b917-c3f724366077" />
 11) Employee name with department name
+
+**Aim: To display employee names with department names.** \
+Requirement: Employee + Department tables.\
+Query: SELECT e.ename, d.dname
+FROM employee e
+JOIN department d ON e.deptno = d.deptno;
+<img width="940" height="825" alt="image" src="https://github.com/user-attachments/assets/f04b9f25-5126-48ae-a301-93e2cb5a9172" />
