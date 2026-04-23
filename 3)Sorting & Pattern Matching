@@ -1,0 +1,101 @@
+1) Dept 30 employees sorted by salary
+
+**Aim: To display employees in dept 30 sorted by salary descending.** \
+Requirement: Employee table with deptno and salary.\
+Theory: ORDER BY sorts records.\
+Query: SELECT ename, job
+FROM employee
+WHERE deptno = 30
+ORDER BY sal DESC;
+<img width="1088" height="275" alt="image" src="https://github.com/user-attachments/assets/880cf944-7174-401d-8de3-bc8f77686143" />
+
+2) Name 5 letters (A___N)
+
+**Aim: To find employees with 5-letter names starting with A and ending with N.** \
+Requirement: Employee name column.\
+Theory: LIKE with underscore (_) matches fixed length.\
+Query: SELECT job, deptno
+FROM employee
+WHERE ename LIKE 'A___N';
+<img width="1089" height="192" alt="image" src="https://github.com/user-attachments/assets/616dfafc-ee09-4f83-b3d5-49b27523b0c0" />
+
+3) Names starting with S
+
+**Aim: To display names starting with S.** \
+Requirement: Employee name field.\
+Theory: LIKE 'S%' matches starting pattern.\
+Query: SELECT ename
+FROM employee
+WHERE ename LIKE 'S%';
+<img width="1089" height="241" alt="image" src="https://github.com/user-attachments/assets/9c9177be-b75d-490d-a125-d8cdf23c3245" />
+
+4) Names ending with S
+
+**Aim: To display names ending with S.** \
+Requirement: Employee name field.\
+Theory: LIKE '%S' matches ending pattern.\
+Query: SELECT ename
+FROM employee
+WHERE ename LIKE '%S';
+<img width="1088" height="268" alt="image" src="https://github.com/user-attachments/assets/533e7f53-cecf-4066-be0e-5bca8c71a5a4" />
+
+5) Dept or Job condition
+
+**Aim: To display employees in specific departments or job roles.** \
+Requirement: Employee table.\
+Theory: OR combines multiple conditions.\
+Query: SELECT ename
+FROM employee
+WHERE deptno IN (10,20,40)
+OR job IN ('CLERK','SALESMAN','ANALYST');
+<img width="995" height="436" alt="image" src="https://github.com/user-attachments/assets/86a07dd1-80ce-4968-b6a8-45b4d0560d0a" />
+
+6) Employees earning commission
+
+**Aim: To display employees receiving commission.** \
+Requirement: Commission column.\
+Theory: IS NOT NULL checks values.\
+Query: SELECT empno, ename
+FROM employee
+WHERE comm IS NOT NULL;
+<img width="846" height="169" alt="image" src="https://github.com/user-attachments/assets/da4ccca7-739d-4e94-89c6-6b26e6dd1069" />
+
+7) Total salary (salary + commission)
+
+**Aim: To calculate total salary.** \
+Requirement: Salary and commission columns.\
+Theory: Arithmetic operations compute values.\
+Query: SELECT empno, (sal + IFNULL(comm,0)) AS total_salary
+FROM employee;
+<img width="1505" height="314" alt="image" src="https://github.com/user-attachments/assets/e49dfee2-677e-4a23-8898-d238f3f5c85c" />
+
+8) Annual salary
+
+**Aim: To calculate annual salary.** \
+Requirement: Salary column.\
+Theory: Multiplication derives yearly salary.\
+Query: SELECT empno, sal * 12 AS annual_salary
+FROM employee;
+<img width="940" height="665" alt="image" src="https://github.com/user-attachments/assets/1e325782-49dc-43d1-a7c1-03a9f013a927" />
+
+9) Clerks with salary > 3000
+
+**Aim: To display clerks earning more than 3000.** \
+Requirement: Employee table.\
+Theory: WHERE filters multiple conditions.\
+Query: SELECT ename
+FROM employee
+WHERE job = 'CLERK'
+AND sal > 3000;
+<img width="719" height="204" alt="image" src="https://github.com/user-attachments/assets/40fdfb3d-30c9-47d5-af27-50f43552338f" />
+
+10) Clerk, salesman, analyst with salary > 3000
+
+**Aim: To display employees in specific roles earning high salary.** \
+Requirement: Employee table.\
+Theory: IN + AND filters multiple conditions.\
+Query: SELECT ename
+FROM employee
+WHERE job IN ('CLERK','SALESMAN','ANALYST')
+AND sal > 3000;
+<img width="978" height="212" alt="image" src="https://github.com/user-attachments/assets/3e869426-ee7d-4918-a722-164bdc09e2c8" />
