@@ -1,0 +1,133 @@
+1) Display empno, ename, dept name using DECODE
+
+**Aim: To display department name instead of deptno.** \
+Requirement: Employee table.\
+Theory: CASE replaces DECODE in MySQL.\
+Query: SELECT empno, ename,
+CASE deptno
+  WHEN 10 THEN 'RESEARCH'
+  WHEN 20 THEN 'ACCOUNTING'
+  WHEN 30 THEN 'SALES'
+  WHEN 40 THEN 'OPERATIONS'
+END AS dept_name
+FROM employee;
+<img width="940" height="1127" alt="image" src="https://github.com/user-attachments/assets/3002482f-5eef-4eb9-b505-6801c19c1efe" />
+
+2) Display your age in days
+
+**Aim: To calculate age in days.** \
+Requirement: Date input.\
+Theory: DATEDIFF finds difference in days.\
+Query: SELECT DATEDIFF(CURDATE(), '2000-01-01') AS age_days;
+<img width="940" height="178" alt="image" src="https://github.com/user-attachments/assets/110817a7-171f-4443-83ac-c92483d795ea" />
+
+3) Display your age in months
+
+**Aim: To calculate age in months.** \
+Requirement: Date input.\
+Theory: TIMESTAMPDIFF calculates months.\
+Query: SELECT TIMESTAMPDIFF(MONTH, '2000-01-01', CURDATE()) AS age_months;
+<img width="940" height="148" alt="image" src="https://github.com/user-attachments/assets/4c097f16-21bc-4d82-9339-51c00d53d83c" />
+
+4) Display current date in full format
+
+**Aim: To display formatted current date.** \
+Requirement: System date.\
+Theory: DATE_FORMAT formats date.\
+Query: SELECT DATE_FORMAT(CURDATE(), '%D %M %W %Y');
+<img width="940" height="162" alt="image" src="https://github.com/user-attachments/assets/4a30271b-1a70-4e6f-b33d-430dc19db064" />
+
+5) Display formatted output for each employee
+
+**Aim: To show formatted employee output.** \
+Requirement: Employee table.\
+Theory: CONCAT combines strings.\
+Query: SELECT CONCAT(ename,' earns ',sal) AS output
+FROM employee;
+<img width="940" height="567" alt="image" src="https://github.com/user-attachments/assets/499a83aa-636d-4791-9617-5afc9354694f" />
+
+6) Scott joining sentence
+
+**Aim: To display Scott joining info in sentence format.** \
+Requirement: Employee table.\
+Query: SELECT CONCAT(ename,' has joined on ',
+DATE_FORMAT(hiredate,'%W %D %M %Y'))
+FROM employee
+WHERE ename='SCOTT';
+<img width="940" height="253" alt="image" src="https://github.com/user-attachments/assets/05eb0778-7e20-4936-b8c3-b627e9751655" />
+
+7) Nearest Saturday after current date
+
+**Aim: To find next Saturday.** \
+Requirement: Date functions.\
+Query: SELECT DATE_ADD(CURDATE(),
+INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY);
+<img width="940" height="199" alt="image" src="https://github.com/user-attachments/assets/13a43fe3-510f-41ae-b77d-ae49765038fb" />
+
+8) Display current time
+
+**Aim: To display system time.** \
+Requirement: System clock.\
+Query: SELECT CURRENT_TIME();
+<img width="940" height="353" alt="image" src="https://github.com/user-attachments/assets/cf227e6e-b0f8-4577-b2c4-92cb08cbcb24" />
+
+9) Date 3 months before today
+
+**Aim: To find past date.** \
+Requirement: Date functions.\
+Query: SELECT DATE_SUB(CURDATE(), INTERVAL 3 MONTH);
+<img width="940" height="202" alt="image" src="https://github.com/user-attachments/assets/dd82f29f-0d5b-45d4-90ab-1653b9cb42de" />
+
+10) Employees joined in December
+    
+**Aim: To find employees joined in December.** \
+Requirement: Hiredate column.\
+Query: SELECT ename
+FROM employee
+WHERE MONTH(hiredate) = 12;
+<img width="940" height="318" alt="image" src="https://github.com/user-attachments/assets/1f6cf4f3-c85d-4c4e-8489-74f9a3460728" />
+
+11) First 2 chars of date & last 2 of salary
+
+**Aim: To extract parts of date and salary.** \
+Requirement: Employee table.\
+Query: SELECT ename,
+LEFT(DATE_FORMAT(hiredate,'%d%m%Y'),2) AS first2_date,
+RIGHT(sal,2) AS last2_sal
+FROM employee;
+<img width="940" height="204" alt="image" src="https://github.com/user-attachments/assets/9567c5a8-e9e0-4bc5-9d45-cc0f1807fe96" />
+
+12) 10% salary equals joining year
+
+**Aim: To compare salary and joining year.** \
+Requirement: Salary + hiredate.\
+Query: SELECT ename
+FROM employee
+WHERE sal * 0.10 = YEAR(hiredate);
+<img width="940" height="406" alt="image" src="https://github.com/user-attachments/assets/2b2263a9-b493-4ceb-bf33-3e9276966ba2" />
+
+13) Joined before 15th day
+
+**Aim: To find employees joining before 15th.** \
+Requirement: Hiredate column.\
+Query:SELECT ename
+FROM employee
+WHERE DAY(hiredate) < 15;
+<img width="940" height="597" alt="image" src="https://github.com/user-attachments/assets/79b503cb-427a-4827-a992-2ce2ebd4bdb4" />
+
+14) Joined before 15th (same concept)
+
+**Aim: To filter based on date.** \
+Requirement: Hiredate.\
+Query:SELECT ename
+FROM employee
+WHERE DAY(hiredate) < 15;
+<img width="940" height="412" alt="image" src="https://github.com/user-attachments/assets/031f600d-2a2c-48fe-b97e-923cc9c6ad1b" />
+
+15) Employees with joining date and dept
+
+**Aim: To display employee with hiredate and department.** \
+Requirement: Employee table.\
+Query: SELECT ename, hiredate, deptno
+FROM employee;
+<img width="940" height="713" alt="image" src="https://github.com/user-attachments/assets/eb1ee3e0-09bd-4b86-b156-83bc6083ad66" />
