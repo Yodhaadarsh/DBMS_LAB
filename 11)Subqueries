@@ -1,0 +1,114 @@
+Experiment 11
+1) Delete employees before 31-Dec-82
+
+**Aim: To delete employees based on hire date condition.** \
+Requirement: Employee table with hiredate.\
+Theory: DELETE removes records using conditions.\
+Query: DELETE FROM employee
+WHERE hiredate < '1982-12-31';
+<img width="940" height="140" alt="image" src="https://github.com/user-attachments/assets/44c59e21-2743-4685-949e-1cefa2bd6f46" />
+
+2) Managers with department name
+
+**Aim: To display managers along with department name.** \
+Requirement: Employee + Department tables.\
+Theory: JOIN combines tables.\
+Query: SELECT e.ename, e.job, d.dname
+FROM employee e
+JOIN department d ON e.deptno = d.deptno
+WHERE e.job = 'MANAGER';
+<img width="940" height="179" alt="image" src="https://github.com/user-attachments/assets/0cc53198-66c7-4f3f-9085-f35ce4cc76b8" />
+
+3) Ford salary equals highest salary
+
+**Aim: To check if Ford has highest salary.** \
+Requirement: Employee table.\
+Theory: Subquery returns max value.\
+Query: SELECT ename, sal
+FROM employee
+WHERE ename = 'FORD'
+AND sal = (SELECT MAX(sal) FROM employee);
+<img width="723" height="340" alt="image" src="https://github.com/user-attachments/assets/e6d83cca-2991-427b-8ef1-2cf238a098be" />
+
+4) Top 5 earners
+
+**Aim: To display top 5 highest paid employees.** \
+Requirement: Employee table with salary.\
+Theory: ORDER BY + LIMIT filters top records.\
+Query: SELECT ename, sal
+FROM employee
+ORDER BY sal DESC
+LIMIT 5;
+<img width="813" height="291" alt="image" src="https://github.com/user-attachments/assets/64c13810-d5be-44bd-9622-04bca0265825" />
+
+5) Employees with highest salary
+
+**Aim: To display employees earning highest salary.** \
+Requirement: Employee table.\
+Query: SELECT ename
+FROM employee
+WHERE sal = (SELECT MAX(sal) FROM employee);
+6) Salary equal to avg of max and min
+
+**Aim: To find employees whose salary equals average of highest and lowest salary.** \
+Requirement: Salary column.\
+Theory: Aggregate functions with arithmetic.\
+Query: SELECT ename, sal
+FROM employee
+WHERE sal = (
+  (SELECT MAX(sal) FROM employee) +
+  (SELECT MIN(sal) FROM employee)
+)/2;
+<img width="767" height="367" alt="image" src="https://github.com/user-attachments/assets/baf12060-fa49-4c09-bd5a-5d4d51577a45" />
+
+7) Departments having at least 3 employees
+
+**Aim: To display departments with minimum 3 employees.** \
+Requirement: Employee + Department tables.\
+Theory: GROUP BY + HAVING filters grouped data.\
+Query: SELECT d.dname
+FROM department d
+JOIN employee e ON d.deptno = e.deptno
+GROUP BY d.dname
+HAVING COUNT(*) >= 3;
+<img width="792" height="438" alt="image" src="https://github.com/user-attachments/assets/4d6b98d9-d038-40c9-832f-950d255246f0" />
+
+8) Managers earning more than average salary
+
+**Aim: To find managers earning above average salary.** \
+Requirement: Employee table.\
+Query: SELECT ename
+FROM employee
+WHERE job = 'MANAGER'
+AND sal > (SELECT AVG(sal) FROM employee);
+<img width="940" height="208" alt="image" src="https://github.com/user-attachments/assets/3ce1c527-1de9-441d-9ffd-9f0f91393c5e" />
+
+9) Managers earning more than avg of their employees
+
+**Aim: To find managers earning more than their subordinates' average salary.** \
+Requirement: Employee table.\
+Theory: Correlated subquery.\
+Query: SELECT m.ename
+FROM employee m
+WHERE m.empno IN (
+  SELECT DISTINCT mgr FROM employee WHERE mgr IS NOT NULL
+)
+AND m.sal > (
+  SELECT AVG(e.sal)
+  FROM employee e
+  WHERE e.mgr = m.empno
+);
+<img width="940" height="330" alt="image" src="https://github.com/user-attachments/assets/9e355ffb-cdda-4cc5-85c7-3aa143ef51cd" />
+
+10) Net pay ≥ highest salary
+
+**Aim: To find employees whose total pay exceeds highest salary.** \
+Requirement: Salary and commission columns.\
+Theory: IFNULL handles NULL commission.\
+Query: SELECT ename, sal, comm,
+(sal + IFNULL(comm,0)) AS net_pay
+FROM employee
+WHERE (sal + IFNULL(comm,0)) >= (
+  SELECT MAX(sal) FROM employee
+);
+<img width="753" height="384" alt="image" src="https://github.com/user-attachments/assets/1ee000f5-9ad6-4282-8471-7a8f712b83e1" />
