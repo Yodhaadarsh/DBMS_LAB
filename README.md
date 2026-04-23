@@ -82,6 +82,9 @@ Theory: SELECT retrieves data.\
 Query: SELECT * FROM employee;
 SELECT * FROM department;
 <img width="865" height="454" alt="image" src="https://github.com/user-attachments/assets/1ae76529-b95e-47ec-b8e7-f0bb671a9dd9" />
+
+
+Experiment 2
 1) List all distinct jobs
 
 **Aim: To display unique job roles.**\
@@ -182,6 +185,8 @@ Query: SELECT ename, deptno
 FROM employee
 WHERE ename LIKE 'M%';
 <img width="772" height="354" alt="image" src="https://github.com/user-attachments/assets/893454ee-e950-4015-869f-495bb64bc987" />
+
+Experiment 3
 1) Dept 30 employees sorted by salary
 
 **Aim: To display employees in dept 30 sorted by salary descending.** \
@@ -244,6 +249,8 @@ FROM employee
 WHERE comm IS NOT NULL;
 <img width="846" height="169" alt="image" src="https://github.com/user-attachments/assets/da4ccca7-739d-4e94-89c6-6b26e6dd1069" />
 
+
+
 7) Total salary (salary + commission)
 
 **Aim: To calculate total salary.** \
@@ -283,6 +290,8 @@ FROM employee
 WHERE job IN ('CLERK','SALESMAN','ANALYST')
 AND sal > 3000;
 <img width="978" height="212" alt="image" src="https://github.com/user-attachments/assets/3e869426-ee7d-4918-a722-164bdc09e2c8" />
+
+Experiment 4
 1) Employees before 30-Jun-80 or after 31-Dec-81
 
 **Aim: To display employees based on joining date condition.** \
@@ -380,6 +389,8 @@ Theory: Numeric comparison checks digit count.\
 Query:SELECT * FROM employee
 WHERE sal >= 100;
 <img width="940" height="971" alt="image" src="https://github.com/user-attachments/assets/31d7dacd-4ec8-49b2-9f83-9596560b008f" />
+
+Experiment 5
 1) Total number of employees
 
 **Aim: To count total employees.** \
@@ -501,6 +512,8 @@ Query:SELECT LENGTH('RAHUL');
 Requirement: Employee table.\
 Query:SELECT ename, LENGTH(ename) FROM employee;
 <img width="940" height="748" alt="image" src="https://github.com/user-attachments/assets/c5e04723-0aa6-4fe1-a806-3efaf6855cb7" />
+
+Experiment 6
 1) Display empno, ename, dept name using DECODE
 
 **Aim: To display department name instead of deptno.** \
@@ -634,6 +647,9 @@ Requirement: Employee table.\
 Query: SELECT ename, hiredate, deptno
 FROM employee;
 <img width="940" height="713" alt="image" src="https://github.com/user-attachments/assets/eb1ee3e0-09bd-4b86-b156-83bc6083ad66" />
+
+
+Experiment 7
 1) Days remaining in current year
 
 **Aim: To calculate remaining days in current year.** \
@@ -739,6 +755,9 @@ Query: SELECT deptno, SUM(sal) AS total_salary
 FROM employee
 GROUP BY deptno;
 <img width="940" height="356" alt="image" src="https://github.com/user-attachments/assets/813a90aa-c458-4f1b-a61a-9640fe654e67" />
+
+
+Experiment 8
 1) Employees with their department name
 
 **Aim: To display employee name with department name.** \
@@ -856,6 +875,9 @@ Query: SELECT e.ename, d.dname
 FROM employee e
 JOIN department d ON e.deptno = d.deptno;
 <img width="940" height="825" alt="image" src="https://github.com/user-attachments/assets/f04b9f25-5126-48ae-a301-93e2cb5a9172" />
+
+
+Experiment 9
 1) Employee with highest salary
 
 **Aim: To find employee(s) earning highest salary.** \
@@ -967,6 +989,9 @@ HAVING SUM(sal) > (
   WHERE job='MANAGER'
 );
 <img width="940" height="314" alt="image" src="https://github.com/user-attachments/assets/7a4860a2-d62a-4d48-9dbc-d3cfa89aad39" />
+
+
+Experiment 10
 1) Dept 10 salary > ANY other dept
 
 **Aim: To find employees in dept 10 earning more than any employee in other departments.** \
@@ -1068,6 +1093,11 @@ FROM employee e
 JOIN employee m ON e.mgr = m.empno
 WHERE e.deptno = m.deptno;
 <img width="793" height="714" alt="image" src="https://github.com/user-attachments/assets/51a8caad-3cfd-482a-aeae-3bba07daf0d0" />
+
+
+
+
+Experiment 11
 1) Delete employees before 31-Dec-82
 
 **Aim: To delete employees based on hire date condition.** \
@@ -1181,107 +1211,6 @@ WHERE (sal + IFNULL(comm,0)) >= (
   SELECT MAX(sal) FROM employee
 );
 <img width="753" height="384" alt="image" src="https://github.com/user-attachments/assets/1ee000f5-9ad6-4282-8471-7a8f712b83e1" />
-1) Days remaining in current year
 
-**Aim: To calculate remaining days in current year.** \
-Requirement: System date.\
-Theory: Date functions calculate difference between dates.\
-Query: SELECT DATEDIFF(
-  STR_TO_DATE(CONCAT(YEAR(CURDATE()),'-12-31'),'%Y-%m-%d'),
-  CURDATE()
-) AS remaining_days;
-<img width="940" height="140" alt="image" src="https://github.com/user-attachments/assets/8d9d18d5-77cc-499d-9aed-ca64e425209c" />
 
-2) Highest, lowest salary and difference
-
-**Aim: To find maximum, minimum salary and their difference.** \
-Requirement: Employee table.\
-Theory: Aggregate functions summarize data.\
-Query: SELECT MAX(sal) AS highest,
-       MIN(sal) AS lowest,
-       MAX(sal) - MIN(sal) AS difference
-FROM employee;
-<img width="940" height="179" alt="image" src="https://github.com/user-attachments/assets/cb1f2f63-49eb-41ad-b8d8-a85edde8ea55" />
-
-3) Commission more than 25% of salary
-
-**Aim: To display employees whose commission exceeds 25% of salary.** \
-Requirement: Salary and commission columns.\
-Theory: Arithmetic conditions filter data.\
-Query: SELECT ename, sal, comm
-FROM employee
-WHERE comm > 0.25 * sal;
-
-4) Salary in dollar format
-
-Aim: To display salary in formatted currency.
-Requirement: Salary column.
-Theory: CONCAT and FORMAT display formatted values.
-Query:
-
-SELECT ename, CONCAT('$', FORMAT(sal,2)) AS salary
-FROM employee;
-5) Matrix query (Job vs Department salary)
-
-Aim: To display salary distribution across departments.
-Requirement: Employee table.
-Theory: Conditional aggregation using CASE.
-Query:
-
-SELECT job,
-SUM(CASE WHEN deptno=10 THEN sal ELSE 0 END) AS dept10,
-SUM(CASE WHEN deptno=20 THEN sal ELSE 0 END) AS dept20,
-SUM(CASE WHEN deptno=30 THEN sal ELSE 0 END) AS dept30,
-SUM(sal) AS total
-FROM employee
-GROUP BY job;
-6) Total employees and year-wise count
-
-Aim: To count employees based on joining year.
-Requirement: Hiredate column.
-Theory: CASE with aggregate functions.
-Query:
-
-SELECT COUNT(*) AS total,
-SUM(CASE WHEN YEAR(hiredate)=1980 THEN 1 ELSE 0 END) AS y1980,
-SUM(CASE WHEN YEAR(hiredate)=1981 THEN 1 ELSE 0 END) AS y1981,
-SUM(CASE WHEN YEAR(hiredate)=1982 THEN 1 ELSE 0 END) AS y1982,
-SUM(CASE WHEN YEAR(hiredate)=1983 THEN 1 ELSE 0 END) AS y1983
-FROM employee;
-7) Last Sunday of current month
-
-Aim: To find last Sunday of the current month.
-Requirement: Date functions.
-Theory: LAST_DAY and DAYOFWEEK functions.
-Query:
-
-SELECT DATE_SUB(LAST_DAY(CURDATE()),
-INTERVAL (DAYOFWEEK(LAST_DAY(CURDATE()))-1) DAY);
-8) Department-wise employee count
-
-Aim: To count employees in each department.
-Requirement: Employee table.
-Theory: GROUP BY groups data.
-Query:
-
-SELECT deptno, COUNT(*) AS total_employees
-FROM employee
-GROUP BY deptno;
-9) Job-wise employee count
-
-Aim: To count employees based on job roles.
-Requirement: Employee table.
-Query:
-
-SELECT job, COUNT(*) AS total_employees
-FROM employee
-GROUP BY job;
-10) Department-wise total salary
-
-Aim: To calculate total salary per department.
-Requirement: Employee table.
-Query:
-
-SELECT deptno, SUM(sal) AS total_salary
-FROM employee
-GROUP BY deptno;
+Experiment 12
