@@ -1,0 +1,100 @@
+1) List all distinct jobs
+
+**Aim: To display unique job roles.**\
+Requirement: Employee table with job column.\
+Theory: DISTINCT removes duplicate values.\
+Query: SELECT DISTINCT job FROM employee;
+<img width="628" height="355" alt="image" src="https://github.com/user-attachments/assets/7ff5ef30-0eb2-4988-8380-8a2d05359e84" />
+
+2) Employees in department 30
+
+**Aim: To display employees working in department 30.**\
+Requirement: Employee table with deptno.\
+Theory: WHERE filters records.\
+Query: SELECT * FROM employee
+WHERE deptno = 30;
+<img width="1090" height="421" alt="image" src="https://github.com/user-attachments/assets/012dc430-a389-4491-8688-e07b04793b9a" />
+
+3) Departments greater than 20
+
+**Aim: To display department numbers and names greater than 20.**\
+Requirement: Department table.\
+Theory: Comparison operators filter numeric values.\
+Query: SELECT deptno, dname
+FROM department
+WHERE deptno > 20;
+<img width="767" height="345" alt="image" src="https://github.com/user-attachments/assets/dac03d3f-476a-4b08-bb57-e92c0550066e" />
+
+4) Managers and clerks in dept 30
+
+**Aim: To display managers and clerks in department 30.**
+Requirement: Employee table.\
+Theory: IN operator checks multiple values.\
+Query: SELECT *
+FROM employee
+WHERE deptno = 30
+AND job IN ('MANAGER','CLERK');
+<img width="843" height="392" alt="image" src="https://github.com/user-attachments/assets/8737bdc7-4997-4a56-9956-0e51f50eb086" />
+
+5) Clerk details
+
+**Aim: To display name, number and department of clerks.**
+Requirement: Employee table.\
+Theory: SELECT specific columns.\
+Query: SELECT ename, empno, deptno
+FROM employee
+WHERE job = 'CLERK';
+<img width="843" height="392" alt="image" src="https://github.com/user-attachments/assets/c5d1416c-3e20-4265-a7e8-f79656c53988" />
+
+
+6) Managers not in dept 30
+
+**Aim: To display managers excluding department 30.**\
+Requirement: Employee table.\
+Theory: <> means NOT EQUAL.\
+Query: SELECT *
+FROM employee
+WHERE job = 'MANAGER'
+AND deptno <> 30;
+<img width="933" height="290" alt="image" src="https://github.com/user-attachments/assets/eb3d8e4f-9588-4315-b82c-5edd49376f93" />
+
+7) Dept 10 employees not manager/clerk
+
+**Aim: To display employees of dept 10 excluding managers and clerks.**\
+Requirement: Employee table.\
+Theory: NOT IN excludes values.\
+Query: SELECT *
+FROM employee
+WHERE deptno = 10
+AND job NOT IN ('MANAGER','CLERK');
+<img width="824" height="212" alt="image" src="https://github.com/user-attachments/assets/27bd0ff2-379d-4aa0-b286-691708b6679c" />
+
+8) Salary between 1200 and 1400
+
+**Aim: To find employees earning in given range.**\
+Requirement: Salary column.\
+Theory: BETWEEN filters range values.\
+Query: SELECT ename, job
+FROM employee
+WHERE sal BETWEEN 1200 AND 1400;
+<img width="776" height="367" alt="image" src="https://github.com/user-attachments/assets/3e550c35-1961-4b89-b0bf-0b6841528a0a" />
+
+9) Clerk, Analyst or Salesman
+
+**Aim: To display employees with specific job roles.**
+Requirement: Employee job column.\
+Theory: IN operator matches multiple values.\
+Query: SELECT ename, deptno
+FROM employee
+WHERE job IN ('CLERK','ANALYST','SALESMAN');
+<img width="771" height="548" alt="image" src="https://github.com/user-attachments/assets/99ef1885-9ea5-4d9c-9496-1c99ece7f892" />
+
+10) Names starting with M
+
+**Aim: To display employees whose names start with M.**\
+Requirement: Employee name column.\
+Theory: LIKE performs pattern matching.\
+Query: SELECT ename, deptno
+FROM employee
+WHERE ename LIKE 'M%';
+<img width="772" height="354" alt="image" src="https://github.com/user-attachments/assets/893454ee-e950-4015-869f-495bb64bc987" />
