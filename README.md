@@ -1219,9 +1219,7 @@ Experiment 12
 **Aim: To find employees earning less than their manager but more than other managers.** \
 Requirement: Employee table with mgr and sal.\
 Theory: Self join compares employee and manager salary.\
-Query:
-
-SELECT e.ename
+Query: SELECT e.ename
 FROM employee e
 JOIN employee m ON e.mgr = m.empno
 WHERE e.sal < m.sal
@@ -1237,9 +1235,7 @@ AND e.sal > (
 **Aim: To count employees earning more than their manager.** \
 Requirement: Employee table.\
 Theory: Self join with COUNT.\
-Query:
-
-SELECT COUNT(*) AS total
+Query: SELECT COUNT(*) AS total
 FROM employee e
 JOIN employee m ON e.mgr = m.empno
 WHERE e.sal > m.sal;
@@ -1250,9 +1246,7 @@ WHERE e.sal > m.sal;
 **Aim: To display managers not directly under PRESIDENT.** \
 Requirement: Employee table.\
 Theory: Subquery finds PRESIDENT.\
-Query:
-
-SELECT ename
+Query: SELECT ename
 FROM employee
 WHERE job = 'MANAGER'
 AND mgr IS NOT NULL
@@ -1266,9 +1260,7 @@ AND mgr <> (
 **Aim: To delete departments having no employees.** \
 Requirement: Department + Employee tables.\
 Theory: NOT EXISTS checks absence.\
-Query:
-
-DELETE FROM department d
+Query: DELETE FROM department d
 WHERE NOT EXISTS (
   SELECT 1 FROM employee e
   WHERE e.deptno = d.deptno
@@ -1280,9 +1272,7 @@ WHERE NOT EXISTS (
 **Aim: To delete employees whose dept does not exist.** \
 Requirement: Employee + Department tables.\
 Theory: NOT IN filters unmatched values.\
-Query:
-
-DELETE FROM employee
+Query: DELETE FROM employee
 WHERE deptno NOT IN (
   SELECT deptno FROM department
 );
@@ -1293,9 +1283,7 @@ WHERE deptno NOT IN (
 Aim: To find employees whose salary does not fall in any grade.
 Requirement: Employee + salgrade table.
 Theory: NOT EXISTS checks unmatched ranges.
-Query:
-
-SELECT e.ename, e.sal
+Query: SELECT e.ename, e.sal
 FROM employee e
 WHERE NOT EXISTS (
   SELECT 1
@@ -1307,9 +1295,7 @@ WHERE NOT EXISTS (
 **Aim: To find employees with highest total salary (sal + comm).** \
 Requirement: Salary and commission columns.\
 Theory: IFNULL handles NULL values.\
-Query:
-
-SELECT ename, sal, comm,
+Query: SELECT ename, sal, comm,
 (sal + IFNULL(comm,0)) AS net_pay
 FROM employee
 WHERE (sal + IFNULL(comm,0)) = (
@@ -1323,9 +1309,7 @@ WHERE (sal + IFNULL(comm,0)) = (
 **Aim: To display employees in specific departments.** \
 Requirement: Employee + Department tables.\
 Theory: JOIN with IN condition.\
-Query:
-
-SELECT e.ename
+Query: SELECT e.ename
 FROM employee e
 JOIN department d ON e.deptno = d.deptno
 WHERE d.dname IN ('SALES','RESEARCH');
@@ -1336,9 +1320,7 @@ WHERE d.dname IN ('SALES','RESEARCH');
 **Aim: To find salary grade of JONES.** \
 Requirement: Employee + salgrade tables.\
 Theory: Join using salary range.\
-Query:
-
-SELECT s.grade
+Query: SELECT s.grade
 FROM employee e
 JOIN salgrade s
 ON e.sal BETWEEN s.losal AND s.hisal
@@ -1350,9 +1332,7 @@ WHERE e.ename = 'JONES';
 **Aim: To match department name length with number of employees.** \
 Requirement: Employee + Department tables.\
 Theory: GROUP BY with HAVING condition.\
-Query:
-
-SELECT d.dname
+Query: SELECT d.dname
 FROM department d
 JOIN employee e ON d.deptno = e.deptno
 GROUP BY d.dname
