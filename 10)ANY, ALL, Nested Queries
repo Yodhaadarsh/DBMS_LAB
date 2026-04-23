@@ -1,0 +1,101 @@
+1) Dept 10 salary > ANY other dept
+
+**Aim: To find employees in dept 10 earning more than any employee in other departments.** \
+Requirement: Employee table.\
+Theory: ANY compares with at least one value.\
+Query: SELECT ename
+FROM employee
+WHERE deptno = 10
+AND sal > ANY (SELECT sal FROM employee WHERE deptno <> 10);
+<img width="940" height="263" alt="image" src="https://github.com/user-attachments/assets/fb25f7fe-233a-4586-bb69-1e03dc418d76" />
+
+2) Dept 10 salary > ALL other dept
+
+**Aim: To find employees in dept 10 earning more than all employees in other departments.** \
+Requirement: Employee table.\
+Theory: ALL compares with all values.\
+Query: SELECT ename
+FROM employee
+WHERE deptno = 10
+AND sal > ALL (SELECT sal FROM employee WHERE deptno <> 10);
+<img width="940" height="135" alt="image" src="https://github.com/user-attachments/assets/69737d11-f0d4-4ed9-abdc-e5682d43c7cd" />
+3) Employees in SALES dept with salary range
+
+**Aim: To display employees in SALES department with salary range (grade-like condition).** \
+Requirement: Employee + Department tables.\
+Theory: Subquery fetches deptno.\
+Query: SELECT *
+FROM employee
+WHERE deptno = (
+  SELECT deptno FROM department WHERE dname='SALES'
+)
+AND sal BETWEEN 1400 AND 2000;
+<img width="940" height="273" alt="image" src="https://github.com/user-attachments/assets/ef9522c6-4b82-4221-94eb-1e76ab838c6f" />
+
+4) Employees who are managers
+
+**Aim: To display employees who act as managers.** \
+Requirement: Employee table with mgr column.\
+Theory: Subquery finds manager IDs.\
+Query: SELECT *
+FROM employee
+WHERE empno IN (
+  SELECT DISTINCT mgr FROM employee WHERE mgr IS NOT NULL
+);
+<img width="940" height="398" alt="image" src="https://github.com/user-attachments/assets/6d9f4775-5711-4d74-878b-dffe71e7bef9" />
+
+5) Employees whose manager is JONES
+
+**Aim: To find employees managed by JONES.** \
+Requirement: Employee table.\
+Query: SELECT ename
+FROM employee
+WHERE mgr = (
+  SELECT empno FROM employee WHERE ename='JONES'
+);
+<img width="940" height="395" alt="image" src="https://github.com/user-attachments/assets/4ea8d3ae-ca92-46f9-aee1-a3f47ca3c6e4" />
+
+6) Employees working in SALES department
+
+**Aim: To display employees working in SALES.** \
+Requirement: Employee + Department tables.\
+Query: SELECT ename
+FROM employee
+WHERE deptno = (
+  SELECT deptno FROM department WHERE dname='SALES'
+);
+<img width="940" height="494" alt="image" src="https://github.com/user-attachments/assets/767089f7-51df-4d28-98ad-05a4534ebf92" />
+
+7) Salary between 2000–5000 in SALES dept
+
+**Aim: To display employees in salary range and department.** \
+Requirement: Employee + Department tables.\
+Theory: Subquery + BETWEEN condition.\
+Query: SELECT ename, sal, comm
+FROM employee
+WHERE sal BETWEEN 2000 AND 5000
+AND deptno = (
+  SELECT deptno FROM department WHERE dname='SALES'
+);
+<img width="940" height="494" alt="image" src="https://github.com/user-attachments/assets/fc2f8a13-2881-4f15-94b9-610a4687fbd2" />
+8) Employees earning more than their manager
+
+**Aim: To find employees earning more than their manager.** \
+Requirement: Employee table (self relation).\
+Theory: Self join with comparison.\
+Query: SELECT e.ename
+FROM employee e
+JOIN employee m ON e.mgr = m.empno
+WHERE e.sal > m.sal;
+<img width="651" height="369" alt="image" src="https://github.com/user-attachments/assets/bb0e7ef4-72c1-493a-8dad-553a69a8964b" />
+
+9) Employees working in same dept as manager
+
+**Aim: To find employees working in same department as their manager.** \
+Requirement: Employee table.\
+Theory: Self join comparison.\
+Query: SELECT e.ename
+FROM employee e
+JOIN employee m ON e.mgr = m.empno
+WHERE e.deptno = m.deptno;
+<img width="793" height="714" alt="image" src="https://github.com/user-attachments/assets/51a8caad-3cfd-482a-aeae-3bba07daf0d0" />
