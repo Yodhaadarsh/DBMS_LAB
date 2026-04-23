@@ -1,0 +1,110 @@
+1) Employees with their department name
+
+**Aim: To display employee name with department name.** \
+Requirement: Employee & Department tables.\
+Theory: JOIN combines data from two tables.\
+Query: SELECT e.ename, d.dname
+FROM employee e
+JOIN department d ON e.deptno = d.deptno;
+<img width="713" height="608" alt="image" src="https://github.com/user-attachments/assets/da221686-c28e-4108-9535-40cb1380ea40" />
+
+2) Employees whose manager is JONES
+
+**Aim: To find employees managed by JONES.** \
+Requirement: Self join on employee table.\
+Theory: Self JOIN links table to itself.\
+Query: SELECT e.ename, m.ename AS manager
+FROM employee e
+JOIN employee m ON e.mgr = m.empno
+WHERE m.ename = 'JONES';
+<img width="940" height="352" alt="image" src="https://github.com/user-attachments/assets/2ff4f57d-e9b0-47ef-8419-4f0e61d61dec" />
+
+3) Employee, job, dept name, manager
+
+**Aim: To display full employee details with manager.** \
+Requirement: Employee + Department tables.\
+Theory: Multiple joins combine related data.\
+Query: SELECT e.ename, e.job, d.dname, m.ename AS manager
+FROM employee e
+LEFT JOIN employee m ON e.mgr = m.empno
+JOIN department d ON e.deptno = d.deptno;
+<img width="1007" height="609" alt="image" src="https://github.com/user-attachments/assets/d7219023-809a-4800-85f9-ed53ed542727" />
+
+4) Employees except clerk sorted by salary
+
+**Aim: To display non-clerk employees sorted by salary.** \
+Requirement: Employee table.\
+Theory: ORDER BY sorts results.\
+Query: SELECT e.ename, e.job, e.sal, d.dname
+FROM employee e
+JOIN department d ON e.deptno = d.deptno
+WHERE e.job <> 'CLERK'
+ORDER BY e.sal DESC;
+<img width="940" height="600" alt="image" src="https://github.com/user-attachments/assets/1726c004-46f3-4206-a782-669ea31b7060" />
+
+
+5) Employee, job and manager (including no manager)
+
+**Aim: To show employees with or without manager.** \
+Requirement: Employee table.\
+Theory: LEFT JOIN includes NULL values.\
+Query: SELECT e.ename, e.job,
+IFNULL(m.ename,'NO MANAGER') AS manager
+FROM employee e
+LEFT JOIN employee m ON e.mgr = m.empno;
+<img width="940" height="608" alt="image" src="https://github.com/user-attachments/assets/7587d6e6-987a-49e8-8b04-5ad8f9b84436" />
+
+6) Employees with annual salary 36000 or not clerk
+
+**Aim: To filter employees based on salary or job.** \
+Requirement: Employee + Department tables.\
+Theory: Logical OR combines conditions.\
+Query: SELECT e.ename, e.job, e.sal*12 AS annual_sal, d.dname
+FROM employee e
+JOIN department d ON e.deptno = d.deptno
+WHERE (e.sal*12 = 36000 OR e.job <> 'CLERK');
+<img width="642" height="592" alt="image" src="https://github.com/user-attachments/assets/8a5d2003-dd8c-41e8-a70c-e71d3affb35e" />
+
+7) Employees earning 30000/year not clerk
+
+**Aim: To find employees earning 30000 annually excluding clerks.** \
+Requirement: Employee table.\
+Query: SELECT e.ename, e.job, e.sal*12 AS annual_sal, d.dname
+FROM employee e
+JOIN department d ON e.deptno = d.deptno
+WHERE e.sal*12 = 30000
+AND e.job <> 'CLERK';
+<img width="1534" height="241" alt="image" src="https://github.com/user-attachments/assets/0c933e88-c8fa-4008-83ab-76e90d9cb719" />
+
+8) Employee with manager name & number
+
+**Aim: To display employee and their manager details.** \
+Requirement: Employee table.\
+Theory: Self JOIN with NULL handling.\
+Query: SELECT e.empno, e.ename,
+IFNULL(m.ename,'NO MANAGER') AS manager_name,
+IFNULL(m.empno,0) AS manager_no
+FROM employee e
+LEFT JOIN employee m ON e.mgr = m.empno;
+<img width="642" height="592" alt="image" src="https://github.com/user-attachments/assets/c09ff21c-0044-4410-8b86-00cd06969669" />
+
+9) Dept name, dept no, total salary
+
+**Aim: To calculate total salary per department.** \
+Requirement: Employee + Department tables.
+Theory: GROUP BY groups records.
+Query: SELECT d.deptno, d.dname, SUM(e.sal) AS total_salary
+FROM employee e
+JOIN department d ON e.deptno = d.deptno
+GROUP BY d.deptno, d.dname;
+<img width="940" height="315" alt="image" src="https://github.com/user-attachments/assets/67f1d93a-acbe-4a7b-a886-0dbf55998eca" />
+
+10) Employee with department name
+
+**Aim: To display employee details with department.** \
+Requirement: Employee + Department tables.\
+Query: SELECT e.empno, e.ename, d.dname
+FROM employee e
+JOIN department d ON e.deptno = d.deptno;
+<img width="911" height="695" alt="image" src="https://github.com/user-attachments/assets/16c19c2f-10b6-46fb-b917-c3f724366077" />
+11) Employee name with department name
